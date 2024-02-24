@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        .center-form {
+            display: flex;
+            align-items: center; 
+            justify-content: center;
+            height: 100vh; 
+            margin: 0;
+        }
+        .form-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: rgb(218, 186, 186);            
+            width: 400px;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+
+
+        .form-container button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 3px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="center-form">
+        <div class="form-container">
+            <form method="post">
+                {% csrf_token %}
+                <h2>Login</h2>
+                <div>
+                    <label for="user">User</label>
+                <br>
+                    <input type="text" name="username" id="" class="">
+                </div>
+                <br>
+                <div>
+                    <label for="pass">Password</label>
+                <br>
+                    
+                    <input type="password" name="password" id="">
+                </div>
+                <br>
+                <button type="button" onclick="registro()">Registrarme</button>
+                <br>
+                <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+                <br>
+                <button type="button" onclick="Olvide()">
+                    Olvide mi contraseña
+                </button>
+            </form>                  
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    function registro() {
+        window.location.href = 'http://127.0.0.1:8000/register/';
+    }
+
+    function Olvide() {
+        window.location.href = 'http://127.0.0.1:8000/reset_password/';
+    }
+</script>

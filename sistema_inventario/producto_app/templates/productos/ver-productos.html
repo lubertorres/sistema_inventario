@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Productos
+{% endblock %}
+
+{% block header %}
+    Nuevo Encabezado
+{% endblock %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div id="mensaje" class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    <div class="center-form">
+        <form method="post" action="http://127.0.0.1:8000/productos/">
+            {% csrf_token %}
+            <label for="">Filtrar:</label>
+            <input type="text" name="ingresoId" placeholder="Nombre Producto">
+            <input type="number" name="CategoriaIngreso" placeholder="Id ategoria">
+            <br><br>
+
+            <button class="btn btn-primary" type="submit">Obtener Resultados</button>
+            <a href="add/" class="btn btn-primary">Añadir Producto</a>
+        </form>
+    </div>
+    <br><br>
+    <div class="container">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Stock</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Categoria</th>
+                    <th>Estado</th>
+                    <th>Marca</th>
+                    <th>Proveedor</th>
+                    <th>Descripcion</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for u in productos %}
+                    <tr id="empleado_{{ u.id }}">
+                        <td>{{ u.id }}</td>
+                        <td>{{ u.stock }}</td>
+                        <td>{{ u.nombre }}</td>
+                        <td>{{ u.precio }}</td>
+                        <td>{{ u.fk_categoria.nombre|default:'' }} Id: {{ u.fk_categoria.id|default:'' }}</td>
+                        <td>{{ u.fk_estado.estado|default:'' }}</td>
+                        <td>{{ u.fk_marca.nombre|default:'' }}</td>
+                        <td>{{ u.fk_proveedor.nombre|default:'' }}</td>
+                        <td>{{ u.descripcion }}</td>
+                        <td>
+                            <span style="display: flex; justify-content: space-between">
+                                {% csrf_token %}
+                                <a href="edit/{{u.id}}" class="btn btn-success">Editar</a>
+                                <a href="delete/{{u.id}}" class="btn btn-danger">Eliminar</a>
+                            </span>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+            <!-- Paginación -->
+            <div class="pagination">
+                <form method="get" action="http://127.0.0.1:8000/productos/">
+                    {% csrf_token %}
+                    <span class="step-links">
+                        {% if productos.has_previous %}
+                            <button class="btn btn-primary" type="submit" name="page" value="1">&laquo; Primera</button>
+                            <button class="btn btn-primary" type="submit" name="page" value="{{ productos.previous_page_number }}">Anterior</button>
+                        {% endif %}
+
+                        <span class="current">
+                            Página {{ productos.number }} de {{ productos.paginator.num_pages }}.
+                        </span>
+
+                        {% if productos.has_next %}
+                            <button class="btn btn-primary" type="submit" name="page" value="{{ productos.next_page_number }}">Siguiente</button>
+                            <button class="btn btn-primary" type="submit" name="page" value="{{ productos.paginator.num_pages }}">Última &raquo;</button>
+                        {% endif %}
+                    </span>
+                </form>
+            </div>
+            <!-- Fin de la paginación -->
+    </div>
+    <br>
+    <br>
+    <br>
+{% endblock %}
+
+{% block footer %}
+    <p>Pie de página personalizado para la nueva plantilla.</p>
+{% endblock %}

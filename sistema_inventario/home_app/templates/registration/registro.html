@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de usuario</title>
+</head>
+<style>
+    .center-form {
+        display: flex;
+        align-items: center; 
+        justify-content: center;
+        height: 100vh; 
+        margin: 0;
+    }
+    .form-container {
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        background-color: rgb(218, 186, 186);            
+        width: 400px;
+    }
+
+    .form-container form {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+
+
+    .form-container button {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 3px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+    }
+
+
+
+</style>
+<body>
+    <h2>Registro de usuario</h2>
+    <div class="center-form">
+        <div class="form-container">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Registrarse</button>
+            </form>           
+        </div>
+  
+    </div>
+<br>
+
+</body>
+</html>

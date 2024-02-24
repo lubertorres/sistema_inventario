@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Gestión de Inventario{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1 class="text-center">Sistema de Gestion</h1>
+        <div class="twxt-center">
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="home()">Home</a>
+                        </li>   
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="clientes()">Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="productos()">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="categorias()">Categorías</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="Marcas()">Marcas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="Proveedores()">Proveedores</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container mt-4">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="">
+    </footer>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+        // document.addEventListener('DOMContentLoaded', function() {
+        //             var detalleFormsContainer = document.getElementById('detalle-forms');
+        //             var agregarDetalleButton = document.getElementById('agregar-detalle');
+                
+        //             agregarDetalleButton.addEventListener('click', function() {
+        //                 var formIndex = detalleFormsContainer.children.length;  // Obtener el índice del formulario
+        //                 var newForm = document.createElement('div');
+        //                 newForm.innerHTML = `
+        //                     <div class="detalle-form">
+        //                         <label>Producto:___</label>
+                                
+        //                         <select name="ingresoName">
+        //                             {% for opcion in productos %}
+
+        //                                 <option value="{{ opcion.id }}">{{ opcion.nombre }}</option>
+        //                             {% endfor %}
+        //                         </select>
+
+
+        //                     </div>
+        //                     <br>
+        //                     `;
+                            
+                
+        //                 // Agregar el formulario al contenedor
+        //                 detalleFormsContainer.appendChild(newForm);
+        //             });
+        //         });
+
+
+    function AgregarDet() {
+        var total_forms = document.querySelector('#id_form-TOTAL_FORMS');
+
+        // Crear un nuevo label para 'Producto:'
+        var nuevo_label_producto = document.createElement('label');
+        nuevo_label_producto.innerHTML = 'Producto: ';
+
+        // Clonar el input para el producto
+        var nuevo_input_producto = document.querySelector('#id_form-0-fk_producto').cloneNode(true);
+        nuevo_input_producto.name = 'form-' + total_forms.value + '-nombre';
+        nuevo_input_producto.id = 'id_form-' + total_forms.value + '-nombre';
+
+        // Seleccionar el contenedor 'detalle-form' y agregar los elementos al final
+        var detalle_form_container = document.querySelector('#detalle-form');
+        detalle_form_container.appendChild(nuevo_label_producto);
+        detalle_form_container.appendChild(nuevo_input_producto);
+
+        // Incrementar el valor del campo TOTAL_FORMS
+        total_forms.value = parseInt(total_forms.value) + 1;
+    }
+
+
+
+        // function AgregarDet() {
+        //     var total_forms = document.querySelector('#id_form-TOTAL_FORMS');
+            
+
+        //     //Nuevos campos
+        //     var nuevo_campo = document.createElement('id_form-0-fk_producto').cloneNode(true);
+        //     nuevo_campo.name = 'form-'+total_forms.value+'-nombre';
+        //     nuevo_campo.id = 'id_form-'+total_forms.value+'-nombre';
+
+
+        //     document.querySelector('#detalle-form').appendChild(nuevo_campo);
+
+        //     total_forms.value = parseInt(total_forms.value) + 1;
+        // }
+    function home() {
+        window.location.href = 'http://127.0.0.1:8000/';
+    }
+
+    function productos() {
+        window.location.href = 'http://127.0.0.1:8000/productos/';
+    }
+
+    function clientes() {
+        window.location.href = 'http://127.0.0.1:8000/clientes/';
+    }
+
+    function categorias() {
+        window.location.href = 'http://127.0.0.1:8000/productos/categorias/';
+    }
+
+    function Marcas() {
+        window.location.href = 'http://127.0.0.1:8000/productos/marcas/';
+    }
+
+    function Proveedores() {
+        window.location.href = 'http://127.0.0.1:8000/productos/proveedores/';
+    }
+
+
+</script>
+
+
+
+

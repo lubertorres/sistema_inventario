@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <style>
+        .center-form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 70vh;
+            margin: 0;
+        }
+
+        .form-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: rgb(218, 186, 186);            
+            max-width: 400px; 
+            width: 100%;
+        }
+
+        .lbl1 {
+            color: blue;
+        }
+        .mensaje {
+            color: red;
+        }
+
+        /* Puedes agregar más estilos según sea necesario */
+    </style>
+</head>
+
+<body>
+    {% extends 'base.html' %}
+
+    {% block title %}Nuevo Título{% endblock %}
+
+    {% block header %}Nuevo Encabezado{% endblock %}
+
+    {% block content %}
+        <div class="center-form">
+            <div class="form-container">
+                <form method="post">
+                    <div>
+                        <label class="lbl1">---Datos del producto</label>
+                        <label class="mensaje">{{ mensaje }}</label>
+
+                    </div>    
+                    <br>            
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-primary" type="submit">Guardar</button>
+                </form>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block footer %}
+    <p>Pie de página personalizado para la nueva plantilla.</p>
+    {% endblock %}
+
+</body>
+
+</html>
